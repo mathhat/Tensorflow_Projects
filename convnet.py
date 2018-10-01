@@ -72,7 +72,7 @@ filter2 = 3
 depth1 = 32
 depth2 = 64
 num_channels = 3
-epochs =2
+epochs =10
 noskip =  [1,1,1,1]
 skip = [1,2,2,1]
 noskip_foo = 32**2
@@ -149,11 +149,11 @@ print_every = 50
 val = []
 train = []
 losss = []
-load = True
+load = False
 save = False
-Test = False
+Test = 1
 
-def Train(load,save,train,val,losss,Test): 
+def Train(load,save,train,val,losss,Test,optimizer): 
     with tf.Session() as session:
         if load:
             saver.restore(session, './goodshit')
@@ -191,7 +191,7 @@ def Train(load,save,train,val,losss,Test):
             print "test_accuracy = ", acc(test_pred.eval(),y_test)
         return train, val, losss
 #train,val,losss = Train(load,save,train,val,losss,Test)
-image = Train(load,save,train,val,losss,Test) #last weight layer
+image = Train(load,save,train,val,losss,Test,optimizer) #last weight layer
 
 '''
 j = 0
